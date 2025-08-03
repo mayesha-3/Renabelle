@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Payment Receipt</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      background: #f2f2f2;
+    }
+
+    .receipt {
+      background: #fff;
+      max-width: 600px;
+      margin: auto;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      color: green;
+      text-align: center;
+    }
+
+    pre {
+      background: #f9f9f9;
+      padding: 15px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="receipt">
+    <h2>✅ Payment Successful</h2>
+    <p><strong>Method:</strong> {{ method }}</p>
+    {% if trxid %}
+      <p><strong>Transaction ID:</strong> {{ trxid }}</p>
+    {% endif %}
+    <h3>Order Summary:</h3>
+    <p><strong>Total:</strong> {{ total }}৳</p>
+  </div>
+</body>
+</html>

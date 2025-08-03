@@ -1,0 +1,562 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Renabelle Bride</title>
+    <link rel="icon" type="image/png" href="{% static 'fastion_app\wedpic\R.png' %}">
+  <link rel="stylesheet" href="{% static 'fastion_app/css/frontpage.css' %}">
+  <link rel="stylesheet1" href="{% static 'fastion_app/css/men.css' %}">
+    <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet2">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0/css/bootstrap.min.css" rel="stylesheet3">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+  </head> <!--header-->
+  <body>
+
+       <!-- CATEGORY JS-->
+
+   <script>
+    function navigate() {
+      var select = document.getElementById('category');
+      var url = select.options[select.selectedIndex].value;
+      window.location.href = url;
+    }
+  </script>
+      <script>
+        window.onscroll = function()
+        {
+          var menu = document.getElementById("menu");
+          if (window.scrollY > 0)
+        {
+          menu.style.position = "sticky";
+          menu.style.top = "0px";
+          menu.style.opacity = ".9";
+          menu.style.height = "6%";
+          menu.style.zIndex="3";
+        }
+        else
+        {menu.style.position = "static";
+          menu.style.opacity = "1";
+        }
+        }
+      </script> 
+      <script src="server.js"> </script>
+    <div class="header">
+       <img src="{% static 'fastion_app/pic/logo2.jpeg' %}" alt="logo" style="height:40px;padding-top: 5px;">
+       
+        <input class="search-container" type="search" class="search-box" placeholder="Search..." style="border-radius: 20px; height: 30px; width: 200px;" >
+    </div><hr>
+
+<!--MENU-->
+   <div class="menu" id="menu" style="color: #ffffff;">
+    <div class="menus">
+      <button class="button" type="button" onclick="window.location.href='{% url 'home' %}'"><p style="color: #ffffff;">HOME</p></button>|
+      <div class="dropdown">
+        <button class="dropdown-btn">CATEGORIES</button>|
+        <div class="dropdown-content">
+          <div class="submenu">
+            <a>Women</a>
+            <div class="submenu-content">
+              <a href="{% url 'onepiece' %}">One Piece</a>
+              <a href="{% url 'salwarkameez' %}">Salwar kameez</a>
+              <a href="{% url 'saree' %}">Saree</a>
+            </div>
+          </div>
+          <a href="{% url 'men1' %}">Men</a>
+          <div class="submenu">
+            <a>Kids</a>
+             <div class="submenu-content">
+                        <a href="{% url 'babyboy' %}">Baby boy</a>
+                        <a href="{% url 'babygirl' %}">Baby girl</a>
+                    
+                    </div>
+                </div>
+                <a href="{% url 'accessories' %}l">Accessories</a>
+                <div class="submenu">
+                <a>Wedding</a>
+                <div class="submenu-content">
+                  <a href="{% url 'groom' %}">Groom</a>
+                  <a href="{% url 'bride' %}">Bride</a>
+              
+              </div>
+          </div>
+                <a href="{% url 'shoes' %}">Shoes</a>
+                <a href="{% url 'bag' %}">Bag</a>
+            </div>
+           </div>
+        <button class="button" type="button"><p style="color: #ffffff;" onclick="window.location.href='{% url 'sale' %}'">SALE</p></button>|
+          <button class="button" type="button" onclick="window.location.href='{% url 'aboutUs' %}'" ><p style="color: #ffffff;">ABOUT US</p></button>|
+          {% if user.is_authenticated %}
+          <form method="post" action="{% url 'logout' %}" style="display:inline;">
+            {% csrf_token %}
+            <button class="button" type="button" onclick="window.location.href='{% url 'logout' %}'" style="background:none; border:none; padding:0;">
+              <p style="color: #ffffff; margin:0;">LOGOUT</p>
+            </button>
+          </form>|
+        {% else %}
+          <button class="button" type="button" onclick="window.location.href='{% url 'login' %}'">
+            <p style="color: #ffffff;">LOGIN</p>
+          </button>|
+        {% endif %}
+        <button class="button" type="button" onclick="window.location.href='{% url 'myCart' %}'">
+          <p style="color: #ffffff; "><span style="font-size: 18px;">🛒</span>
+            MY CART<span  id="cart-count" style="font-size: 14px; color: yellow;">({{ total_items }})</span></p></button>
+                 </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--    <div class="whole-wedding-page">
+<div style="position: absolute; ">    
+       <div id="mySidenav" class="sidenav">
+            <a href="#groom" id="groom1">Jump to Groom section</a>
+      </div>
+    </div>-->
+<p style="margin-top: 10vh;"> </p>
+        <h1 id="bride" style=" margin-bottom: 10vh; display: flex; justify-self: center;">BRIDE</h1>
+<div class="CardsContainer">
+    
+    <div class="cards" id="cards" style=" ">
+        <div> <img class="weddingImg" src="{% static 'fastion_app/wedpic/1.avif' %}" alt=""></div>
+        
+     <div class="details">
+         <div> White gold moslin veil </div>
+        <div> 6,97,500 tk</div>
+        <div> 
+    
+<button class="cart-button" onclick="openPopup('Blue Striped Executive Shirt', '{% static 'fastion_app/wedpic/1.avif' %}', '697500.00')">
+                        <span class="add-to-cart">Add to cart</span>
+                        <i class="fas fa-shopping-cart"></i>
+                        <i class="fas fa-box"></i>
+                    </button>
+
+</div>
+    
+     </div> 
+ </div>
+ <div class="cards" id="cards" style=" ">
+    <div> <img class="weddingImg" src="{% static 'fastion_app/wedpic/2.avif' %}" alt=""></div>
+    
+ <div class="details">
+     <div> Red Rose Bridal </div>
+    <div> 80,399 tk</div>
+    <div> <button class="cart-button" onclick="openPopup('Blue Striped Executive Shirt', '{% static 'fastion_app/wedpic/2.avif' %}', '80399.00')">
+                        <span class="add-to-cart">Add to cart</span>
+                        <i class="fas fa-shopping-cart"></i>
+                        <i class="fas fa-box"></i>
+                    </button> </div>
+
+ </div> 
+</div>
+<div class="cards" id="cards" style=" ">
+    <div> <img class="weddingImg" src="{% static 'fastion_app/wedpic/3.avif' %}" alt=""></div>
+    
+ <div class="details">
+     <div> Golden blossom </div>
+    <div> 94,980 tk</div>
+    <div><button class="cart-button" onclick="openPopup(' Golden blossom ', '{% static 'fastion_app/wedpic/3.avif' %}', '94980.00')">
+                        <span class="add-to-cart">Add to cart</span>
+                        <i class="fas fa-shopping-cart"></i>
+                        <i class="fas fa-box"></i>
+                    </button> </div>
+ </div> 
+</div>
+<div class="cards" id="cards" style=" ">
+    <div> <img class="weddingImg" src="{% static 'fastion_app/wedpic/4.avif' %}" alt=""></div>
+    
+ <div class="details">
+     <div>Real Gold thread lehenga </div>
+    <div> 9,15,399 tk</div>
+    <div><button class="cart-button" onclick="openPopup('Real Gold thread lehenga', '{% static 'fastion_app/wedpic/4.avif' %}', '915399.00')">
+                        <span class="add-to-cart">Add to cart</span>
+                        <i class="fas fa-shopping-cart"></i>
+                        <i class="fas fa-box"></i>
+                    </button> </div>
+
+ </div> 
+</div>
+<div class="cards" id="cards" style=" ">
+    <div> <img class="weddingImg" src="{% static 'fastion_app/wedpic/5.avif' %}" alt=""></div>
+    
+ <div class="details">
+     <div> Kochuri </div>
+    <div> 75,700 tk</div>
+ <button class="cart-button" onclick="openPopup('Kochuri ', '{% static 'fastion_app/wedpic/5.avif' %}', '75700.00')">
+                        <span class="add-to-cart">Add to cart</span>
+                        <i class="fas fa-shopping-cart"></i>
+                        <i class="fas fa-box"></i>
+                    </button>
+ </div> 
+</div>
+<div class="cards" id="cards" style=" ">
+    <div> <img class="weddingImg" src="{% static 'fastion_app/wedpic/6.avif' %}" alt=""></div>
+    
+ <div class="details">
+     <div> Rani Rashmoni </div>
+    <div> 1,00,900 tk</div>
+<button class="cart-button" onclick="openPopup('Rani Rashmoni ', '{% static 'fastion_app/wedpic/6.avif' %}', '100900.00')">
+                        <span class="add-to-cart">Add to cart</span>
+                        <i class="fas fa-shopping-cart"></i>
+                        <i class="fas fa-box"></i>
+                    </button>
+ </div> 
+</div>
+<div class="cards" id="cards" style=" ">
+    <div> <img class="weddingImg" src="{% static 'fastion_app/wedpic/7.avif' %}" alt=""></div>
+    
+ <div class="details">
+     <div> White Gold Threaded Ogil </div>
+    <div> 3,55,300 tk</div>
+<button class="cart-button" onclick="openPopup(' White Gold Threaded Ogil', '{% static 'fastion_app/wedpic/7.avif' %}', '355300.00')">
+                        <span class="add-to-cart">Add to cart</span>
+                        <i class="fas fa-shopping-cart"></i>
+                        <i class="fas fa-box"></i>
+                    </button>
+ </div> 
+</div>
+<div class="cards" id="cards" style=" ">
+    <div> <img class="weddingImg" src="{% static 'fastion_app/wedpic/8.avif' %}" alt=""></div>
+    
+ <div class="details">
+     <div> Gold Blood Diamond </div>
+    <div> 2,00,000 tk</div>
+   <div> <button class="cart-button" onclick="openPopup('Gold Blood Diamond', '{% static 'fastion_app/wedpic/8.avif' %}', '200000.00')">
+                        <span class="add-to-cart">Add to cart</span>
+                        <i class="fas fa-shopping-cart"></i>
+                        <i class="fas fa-box"></i>
+                    </button> </div>
+ </div> 
+</div>
+<div class="cards" id="cards" style=" ">
+    <div> <img class="weddingImg" src="{% static 'fastion_app/wedpic/9.avif' %}" alt=""></div>
+    
+ <div class="details">
+     <div> Gultekin </div>
+    <div> 75,800 tk</div>
+   <div> <button class="cart-button" onclick="openPopup('Gultekin', '{% static 'fastion_app/wedpic/9.avif' %}', '75800.00')">
+                        <span class="add-to-cart">Add to cart</span>
+                        <i class="fas fa-shopping-cart"></i>
+                        <i class="fas fa-box"></i>
+                    </button> </div>
+ </div> 
+</div>
+<div class="cards" id="cards" style=" ">
+    <div> <img class="weddingImg" src="{% static 'fastion_app/wedpic/10.avif' %}" alt=""></div>
+    
+ <div class="details">
+     <div> Oyster Ivory </div>
+    <div> 86,200 tk</div>
+   <div><button class="cart-button" onclick="openPopup('Oyster Ivory', '{% static 'fastion_app/wedpic/10.avif' %}', '86200.00')">
+                        <span class="add-to-cart">Add to cart</span>
+                        <i class="fas fa-shopping-cart"></i>
+                        <i class="fas fa-box"></i>
+                    </button> </div>
+ </div> 
+</div>
+<div class="cards" id="cards" style=" ">
+    <div> <img class="weddingImg" src="{% static 'fastion_app/wedpic/11.avif' %}" alt=""></div>
+    
+ <div class="details">
+     <div> Gulab Geet </div>
+    <div> 69,800 tk</div>
+   <div> <button class="cart-button" onclick="openPopup('Gulab Geet', '{% static 'fastion_app/wedpic/11.avif' %}', '69800.00')">
+                        <span class="add-to-cart">Add to cart</span>
+                        <i class="fas fa-shopping-cart"></i>
+                        <i class="fas fa-box"></i>
+                    </button></div>
+ </div> 
+</div>
+<div class="cards" id="cards" style=" ">
+    <div> <img class="weddingImg" src="{% static 'fastion_app/wedpic/12.avif' %}" alt=""></div>
+    
+ <div class="details">
+     <div> Dulha Dolly </div>
+    <div> 97,700 tk</div>
+   <div><button class="cart-button" onclick="openPopup('Dulha Dolly', '{% static 'fastion_app/wedpic/12.avif' %}', '97700.00')">
+                        <span class="add-to-cart">Add to cart</span>
+                        <i class="fas fa-shopping-cart"></i>
+                        <i class="fas fa-box"></i>
+                    </button> </div>
+ </div> 
+</div>
+<div class="cards" id="cards" style=" ">
+    <div> <img class="weddingImg" src="{% static 'fastion_app/wedpic/13.avif' %}" alt=""></div>
+    
+ <div class="details">
+     <div> Ivory Costal </div>
+    <div> 95,399 tk</div>
+   <div> <button class="cart-button" onclick="openPopup('Ivory Costal', '{% static 'fastion_app/wedpic/13.avif' %}', '95399.00')">
+                        <span class="add-to-cart">Add to cart</span>
+                        <i class="fas fa-shopping-cart"></i>
+                        <i class="fas fa-box"></i>
+                    </button> </div>
+ </div> 
+</div>
+<div class="cards" id="cards" style=" ">
+    <div> <img class="weddingImg" src="{% static 'fastion_app/wedpic/14.avif' %}" alt=""></div>
+    
+ <div class="details">
+     <div> Grey Gold Velvet  </div>
+    <div> 99,900 tk</div>
+   <div> <button class="cart-button" onclick="openPopup('Grey Gold Velvet', '{% static 'fastion_app/wedpic/14.avif' %}', '99900.00')">
+                        <span class="add-to-cart">Add to cart</span>
+                        <i class="fas fa-shopping-cart"></i>
+                        <i class="fas fa-box"></i>
+                    </button></div>
+ </div> 
+</div>
+<div class="cards" id="cards" style=" ">
+    <div> <img class="weddingImg" src="{% static 'fastion_app/wedpic/15.avif' %}" alt=""></div>
+    
+ <div class="details">
+     <div> Gold Hand Embroidery </div>
+    <div> 75,399 tk</div>
+   <div><button class="cart-button" onclick="openPopup('Gold Hand Embroidery', '{% static 'fastion_app/wedpic/15.avif' %}', '75399.00')">
+                        <span class="add-to-cart">Add to cart</span>
+                        <i class="fas fa-shopping-cart"></i>
+                        <i class="fas fa-box"></i>
+                    </button> </div>
+ </div> 
+</div>
+<div class="cards" id="cards" style=" ">
+    <div> <img class="weddingImg" src="{% static 'fastion_app/wedpic/16.avif' %}" alt=""></div>
+    
+ <div class="details">
+     <div> Grey Gold Velvet Embroidery </div>
+    <div> 1,87,000 tk</div>
+   <div> <button class="cart-button" onclick="openPopup('Grey Gold Velvet Embroidery', '{% static 'fastion_app/wedpic/16.avif' %}', '187000.00')">
+                        <span class="add-to-cart">Add to cart</span>
+                        <i class="fas fa-shopping-cart"></i>
+                        <i class="fas fa-box"></i>
+                    </button> </div>
+ </div> 
+</div>
+<div class="cards" id="cards" style=" ">
+    <div> <img class="weddingImg" src="{% static 'fastion_app/wedpic/17.avif' %}" alt=""></div>
+    
+ <div class="details">
+     <div> Gold Architectural Embroidery </div>
+    <div> 2,90,000 tk</div>
+   <div> <button class="cart-button" onclick="openPopup('Gold Architectural Embroidery', '{% static 'fastion_app/wedpic/17.avif' %}', '290000.00')">
+                        <span class="add-to-cart">Add to cart</span>
+                        <i class="fas fa-shopping-cart"></i>
+                        <i class="fas fa-box"></i>
+                    </button> </div>
+ </div> 
+</div>
+<div class="cards" id="cards" style=" ">
+    <div> <img class="weddingImg" src="{% static 'fastion_app/wedpic/18.avif' %}" alt=""></div>
+    
+ <div class="details">
+     <div> Antique Sculpted Couture </div>
+    <div> 99,000 tk</div>
+   <div> <button class="cart-button" onclick="openPopup( 'Antique Sculpted Couture', '{% static 'fastion_app/wedpic/18.avif' %}', '99000.00')">
+                        <span class="add-to-cart">Add to cart</span>
+                        <i class="fas fa-shopping-cart"></i>
+                        <i class="fas fa-box"></i>
+                    </button> </div>
+ </div> 
+</div>
+
+<div class="cards" id="cards" style=" ">
+    <div> <img class="weddingImg" src="{% static 'fastion_app/wedpic/19.avif' %}" alt=""></div>
+    
+ <div class="details">
+     <div> Oyster Gold Dari Embroidery </div>
+    <div> 7,00,000 tk</div>
+    <div> <button class="cart-button" onclick="openPopup('Oyster Gold Dari Embroidery', '{% static 'fastion_app/wedpic/19.avif' %}', '700000.00')">
+                        <span class="add-to-cart">Add to cart</span>
+                        <i class="fas fa-shopping-cart"></i>
+                        <i class="fas fa-box"></i>
+                    </button> </div>
+ </div> 
+</div>
+<div class="cards" id="cards" style=" ">
+    <div> <img class="weddingImg" src="{% static 'fastion_app/wedpic/20.avif' %}" alt=""></div>
+    
+ <div class="details">
+     <div> Gulaab Jamun </div>
+    <div> 90,000 tk</div>
+   <div> <button class="cart-button" onclick="openPopup('Gulaab Jamun', '{% static 'fastion_app/wedpic/20.avif' %}', '90000.00')">
+                        <span class="add-to-cart">Add to cart</span>
+                        <i class="fas fa-shopping-cart"></i>
+                        <i class="fas fa-box"></i>
+                    </button> </div>
+ </div> 
+</div>
+<div class="cards" id="cards" style=" ">
+    <div> <img class="weddingImg" src="{% static 'fastion_app/wedpic/21.avif' %}" alt=""></div>
+    
+ <div class="details">
+     <div> Haute Couture Gold Blossom </div>
+    <div> 2,05,000 tk</div>
+   <div> <button class="cart-button" onclick="openPopup(' Haute Couture Gold Blossom', '{% static 'fastion_app/wedpic/21.avif' %}', '205000.00')">
+                        <span class="add-to-cart">Add to cart</span>
+                        <i class="fas fa-shopping-cart"></i>
+                        <i class="fas fa-box"></i>
+                    </button> </div>
+ </div> 
+</div>
+<div class="cards" id="cards" style=" ">
+    <div> <img class="weddingImg" src="{% static 'fastion_app/wedpic/22.avif' %}" alt=""></div>
+    
+ <div class="details">
+     <div> Oyster Dari Embroidery </div>
+    <div> 99,000 tk</div>
+   <div> <button class="cart-button" onclick="openPopup('Oyster Dari Embroidery', '{% static 'fastion_app/wedpic/22.avif' %}', '99000.00')">
+                        <span class="add-to-cart">Add to cart</span>
+                        <i class="fas fa-shopping-cart"></i>
+                        <i class="fas fa-box"></i>
+                    </button> </div>
+ </div> 
+</div>
+<div class="cards" id="cards" style=" ">
+    <div> <img class="weddingImg" src="{% static 'fastion_app/wedpic/MM-PR-LH-55540-BL-DP_C-XS-1.avif' %}" alt=""></div>
+    
+ <div class="details">
+     <div> Anarishka Kane Embroidered </div>
+    <div> 2,99,000 tk</div>
+   <div> <button class="cart-button" onclick="openPopup('Anarishka Kane Embroidered', '{% static 'fastion_app/wedpic/MM-PR-LH-55540-BL-DP_C-XS-1.avif' %}', '299000.00')">
+                        <span class="add-to-cart">Add to cart</span>
+                        <i class="fas fa-shopping-cart"></i>
+                        <i class="fas fa-box"></i>
+                    </button></div>
+ </div> 
+</div>
+</div>
+
+
+    <!-- FOOTER -->
+     <p><br><br><br><br><br><br></p>
+<div class="subscribe">
+    <div class="newsletter"><p>JOIN OUR NEWSLETTER </p></div>
+    <div><input type="email" placeholder="Enter email..." style="width: 300px; height: 35px; margin-left: 40px;"></div>
+    
+</div>
+<div class="footerbox" style="">
+  <div class="footer" >
+    
+    <div>
+      <ul type="none";>
+       <li class="list-header">CLIENT SERVICES</li>
+        <li><a href="{% url 'contactUs' %}" class="footer-list">Contact Us</a></li>
+        <li><a href="{% url 'appointment' %}" class="footer-list">Book an Appointment</a></li>
+        <li><a href="{% url 'services' %}" class="footer-list">Our Services</a></li>
+        <li><a href="{% url 'faq' %}" class="footer-list">FAQs</a></li>
+        
+      </ul>
+    </div>
+    <div>
+      <ul type="none">
+         <li class="list-header">LEGAL & PRIVACY</li>
+        <li><a href="{% url 'privacy' %}" class="footer-list">Privacy Policy</a></li>
+        <li><a href="{% url 'cookie' %}" class="footer-list">Cookie Policy</a></li>
+        <li><a href="{% url 'terms' %}" class="footer-list">Website terms of use</a></li>
+        <li><a href="{% url 'code' %}" class="footer-list">Code of conduct</a></li>
+      </ul>
+    </div>
+    <div>
+      <ul type="none">
+      <li class="list-header">CORPORATE</li>
+      <li><a href="{% url 'aboutUs' %}" class="footer-list">About Us</a></li>
+      <li><a href="{% url 'locations' %}" class="footer-list">Store Locations</a></li>
+      <li><a href="{% url 'career' %}" class="footer-list">Career with us</a></li>
+    </ul>
+    </div>
+
+  </div>
+  <div style="justify-self: end;">
+   <a href="https://www.facebook.com/BRAC.AARONG"><img class="footer-sns" src="{% static 'fastion_app/pic/fblogo.png' %}" alt="" style=""></a>
+    <a href="https://www.instagram.com/brac.aarong"><img class="footer-sns" src="{% static 'fastion_app/pic/iglogo.webp' %}" alt="" style="" ></a>
+    <a href="https://www.youtube.com/myaarongrewards"><img class="footer-sns" src="{% static 'fastion_app/pic/ytlogo.webp' %}" alt="" style="" ></a>
+    
+    </div>
+</div>
+<hr>
+<div class="credits"><p >© RENABELLE - ALL RIGHTS RESERVED - P. IVA 00900421009 LICENZA SIAE N. 3566/I/1417 - Renabelle Fashion Official Online Store</p></div>
+</div>
+  <!-- Hidden Django form (only one needed) -->
+    <form id="add-to-cart-form" method="post" action="{% url 'add_to_cart' %}" style="display:none;">
+        {% csrf_token %}
+        <input type="hidden" name="product_name" id="popup_product_name">
+        <input type="hidden" name="product_image" id="popup_product_image">
+        <input type="hidden" name="price" id="popup_price">
+        <input type="hidden" name="size" id="popup_size">
+        <input type="hidden" name="quantity" id="popup_quantity">
+    </form>
+
+    <!-- Popup HTML (one global popup) -->
+    <div  id="popup" style="justify-content: center; justify-items: center; width:20vw; border-radius: 10%; border-style: dashed; border-width: 2px; border-color: black; display:none; position:fixed; top:55%; left:50%; transform:translate(-50%,-50%); background:#fff; border:1px solid #ccc; padding:30px; z-index:1000;">
+        <span style="float:right; cursor:pointer;" onclick="closePopup()">&times;</span>
+        <h4 id="popup_title"></h4>
+        <label>Size:
+            <select id="popup_select_size">
+                <option value="Small">S</option>
+                <option value="Medium">M</option>
+                <option value="Large">L</option>
+                <option value="Extra-large">XL</option>
+            </select>
+        </label>
+        <br>
+        <label>Quantity:
+            <input type="number" id="popup_input_quantity" value="1" min="1" max="8">
+        </label>
+        <br><br>
+        <button onclick="submitPopupForm()" class="cart-button">Add to cart</button>
+    </div>
+    <div id="popup_overlay" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.3); z-index:999;" onclick="closePopup()"></div>
+
+
+    <script>
+        function openPopup(name, image, price) {
+            document.getElementById('popup').style.display = 'block';
+            document.getElementById('popup_overlay').style.display = 'block';
+            document.getElementById('popup_title').textContent = name;
+            document.getElementById('popup').dataset.productName = name;
+            document.getElementById('popup').dataset.productImage = image;
+            document.getElementById('popup').dataset.price = price;
+        }
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+            document.getElementById('popup_overlay').style.display = 'none';
+        }
+        function submitPopupForm() {
+            document.getElementById('popup_product_name').value = document.getElementById('popup').dataset.productName;
+            document.getElementById('popup_product_image').value = document.getElementById('popup').dataset.productImage;
+            document.getElementById('popup_price').value = document.getElementById('popup').dataset.price;
+            document.getElementById('popup_size').value = document.getElementById('popup_select_size').value;
+            document.getElementById('popup_quantity').value = document.getElementById('popup_input_quantity').value;
+            document.getElementById('add-to-cart-form').submit();
+        }
+    </script>
+<script src="{% static 'fastion_app/js/java.js' %}"></script>
+   
+</body>
+</html>

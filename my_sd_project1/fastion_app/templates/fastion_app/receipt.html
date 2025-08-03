@@ -1,0 +1,102 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Payment Confirmation</title>
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #f4f4f4;
+            padding: 40px;
+        }
+        .receipt-box {
+            background: #fff;
+            padding: 30px;
+            max-width: 500px;
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #aaa;
+        }
+        .receipt-box h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .receipt-box table {
+            width: 100%;
+            font-size: 16px;
+        }
+        .receipt-box td {
+            padding: 8px 0;
+        }
+        .label {
+            font-weight: bold;
+        }
+        .status-paid {
+            color: green;
+            font-weight: bold;
+        }
+        .status-unpaid {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="receipt-box">
+        <h2>Payment Receipt</h2>
+        <table>
+            <tr>
+                <td class="label">Order ID:</td>
+                <td>#{{ order.id }}</td>
+            </tr>
+            <tr>
+                <td class="label">Payment Method:</td>
+                <td>{{ order.payment_method }}</td>
+            </tr>
+            <tr>
+                <td class="label">Customer Contact:</td>
+                <td>
+                    {% if order.payment_method == "bKash" or order.payment_method == "Nagad" %}
+                        +88{{ order.mobile_number }}
+                    {% elif order.payment_method == "Card" %}
+                        **** **** **** {{ order.mobile_number|slice:"-4:" }}
+                    {% else %}
+                        N/A (Cash on Delivery)
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td class="label">Product Total:</td>
+                <td>৳{{ order.amount }}</td>
+            </tr>
+            <tr>
+                <td class="label">Delivery Charge:</td>
+                <td>৳{{ order.delivery_charge }}</td>
+            </tr>
+            <tr>
+                <td class="label">Total Paid:</td>
+                <td>৳{{ total_paid }}</td>
+            </tr>
+            <tr>
+                <td class="label">Payment Status:</td>
+                <td>
+                    {% if order.is_paid %}
+                        <span class="status-paid">Paid</span>
+                    {% else %}
+                        <span class="status-unpaid">Unpaid</span>
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td class="label">Delivery Type:</td>
+                <td>{{ order.delivery_type }}</td>
+            </tr>
+            <tr>
+                <td class="label">Delivery Address:</td>
+                <td>{{ order.delivery_address }}</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
